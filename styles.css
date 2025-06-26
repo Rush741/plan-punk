@@ -61,12 +61,15 @@ body {
 .columns {
     flex-direction: row;
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
 }
 
 .task-group {
-    border: 1px solid black;
-    padding: 20px;
-    margin: 0px 350px 0px 0px;
+    align-items: center;
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    width: 250px;
+    margin: 0px 100px 0px 0px;
+}
+.task-group h3{
+    justify-content: center;
 }
