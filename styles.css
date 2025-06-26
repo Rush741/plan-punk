@@ -1,19 +1,37 @@
 body {
-    background-color: #f9f9f9;
+    background-color: #c8d8e4;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+
+}
+
+/* TITLE BAR */
+
+.check-icon {
+    margin: 14px -12px 12px 12px;
+    display: inline-flex;
+    color: #d8e3eb8f;
 }
 
 .title-bar {
+    display: inline-flex;
     width: 100%;
-    background-color: #c8d8e4;
+    color: #d8e3eb;
+    background-color: #2b6777;
     border: 0px;
     margin: 0px;
-    padding: 0.1px;
-    padding-left: 10px;
+    padding: 8px 8px 8px 0px;
 }
 
+.title-bar h2 {
+    margin: 0;
+    padding: 8px 8px 8px 02px;
+}
+
+/* TASK INPUT AND ADD BUTTON */
 
 .task-input {
-    margin: 100px 0px 50px 0px;
+    margin: 110px 0px 50px 25px;
     height: 50px;
     width: 400px;
     
@@ -22,14 +40,33 @@ body {
 #addBtn {
     border: 0px;
     color: #f2f2f2;
+    color: whitesmoke;
     background-color: #2b6777;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
 
     height: 55px;
     width: 95px;
-    border-radius: 10%;
+    border-radius: 7%;
 
     margin-left: 10px;
 }
+
+/* TASKS CONTAINERS */
+
 .task-container {
     margin-left: 60px;
+}
+
+.columns {
+    flex-direction: row;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.task-group {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 0px 350px 0px 0px;
 }
