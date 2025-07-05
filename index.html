@@ -18,31 +18,32 @@
     </div>
     <div class="task-container">
         <div class="add-task">
-            <input class="task-input" type="text" placeholder="Enter new task...">
+            <input class="task-input" id="task-input-field" type="text" placeholder="Enter new task...">
             <button id="addBtn"> + Add </button>
         </div>
         <div class="columns">
             <div class="task-group modal-content rounded-4 shadow"> 
                 <div class="modal-body p-5"> 
                     <h4 class="fw-bold mb-0">To Do</h4> 
-                    <div class="task-list" id="todoList"></div>
+                    <div class="task-list" id="todo"></div>
                 </div> 
             </div>
             <div class="task-group modal-content rounded-4 shadow"> 
                 <div class="modal-body p-5"> 
                     <h4 class="fw-bold mb-0">In Progress</h4> 
-                    <div class="task-list" id="inProgressList"></div>
+                    <div class="task-list" id="inprogress"></div>
                 </div> 
             </div>
             <div class="task-group modal-content rounded-4 shadow"> 
                 <div class="modal-body p-5"> 
                     <h4 class="fw-bold mb-0">Completed</h4> 
-                    <div class="task-list" id="CompletedList"></div>
+                    <div class="task-list" id="completed"></div>
                 </div> 
             </div>
     </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
