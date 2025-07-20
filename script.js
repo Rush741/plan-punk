@@ -1,37 +1,69 @@
 const addBtn = document.getElementById("addBtn");
 const taskInput = document.querySelector(".task-input");
-const todoContainer = document.getElementById("todo");
+const todoList = document.getElementById("todo");
+const inProgressList = document.getElementById("inprogress");
+const doneList = document.getElementById("done")
 
-//Task Input into container
-addBtn.addEventListener("click", addTaskToContainer);
-document.addEventListener("keypress", function(event) {
-    console.log(event.key)
-    if(event.key === "Enter") {
-        addTaskToContainer();
-    }
-})
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-function addTaskToContainer() {
-    const taskText = taskInput.value.trim();
-    if(taskText === "") return;
-
-    const taskCard = document.createElement("div");
-    taskCard.className = "task-card";
-    taskCard.innerHTML = `<span>${taskText}</span><button class="del-btn">X</button>`;
-
-    todoContainer.appendChild(taskCard);
-    taskInput.value="";
-
-    taskCard.querySelector(".del-btn").addEventListener("click", () => {
-        taskCard.remove();
+function saveTasks() {
+    const allTasks = [];
+    ["todo","inprogress","done"].forEach((columnId) => {
+        const column = document.getElementById(columnId);
+        const cards = column.querySelectorAll(".task-card");
+        cards.forEach((card) => {
+            allTasks.push({
+                text: card.querySelector("span").innerText,
+                column: columnId,
+            });
+        });
     });
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
 }
 
-const list = ["todo", "inprogress", "completed"];
+function createTask(text, columnId) {
+  const taskCard = document.createElement("div");
+  taskCard.className = "task-card";
+  taskCard.innerHTML = `
+    <span>${text}</span>
+    <button class="delete-btn">x</button>
+  `;
 
-list.forEach(function(id) {
+  taskCard.querySelector(".delete-btn").addEventListener("click", () => {
+    taskCard.remove();
+    saveTasks();
+  });
+
+  document.getElementById(columnId).appendChild(taskCard);
+}
+
+//Task Input into container
+// CLICK
+addBtn.addEventListener("click", () => {
+  addToTodo();
+});
+//Enter
+document.addEventListener("keypress", (key) => {
+    if(key.key === "Enter") {
+        addToTodo();
+    }
+});
+function addToTodo() {
+    const taskText = taskInput.value.trim();
+    if (taskText === "") return;
+
+    createTask(taskText, "todo");
+    taskInput.value = "";
+    saveTasks();
+}
+
+// Restores saved tasks on load
+tasks.forEach((task) => createTask(task.text, task.column));
+
+["todo", "inprogress", "done"].forEach((id) => {
     new Sortable(document.getElementById(id), {
         group: "shared",
         animation: 150,
+        onEnd: saveTasks, //saves tasks after draggin
     });
 });
